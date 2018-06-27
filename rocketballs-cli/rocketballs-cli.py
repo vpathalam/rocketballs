@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from datetime import date
+import datetime
 
 PLAYERS_PATH = '../players/' #Path to players directory
 
@@ -26,7 +26,7 @@ def get_name():
 def hit():
 	name = get_name()
 	if len(name) > 0:
-		date_string = str(date.today())
+		date_string = str(datetime.datetime.utcnow())
 		with open(PLAYERS_PATH + name, 'a') as file:
 			file.write('\n' + date_string) 
 	else:
