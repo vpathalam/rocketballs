@@ -3,3 +3,4 @@ Using Rocketballs CLI:
 python rocketballs-cli.py help	-print this help page
 python rocketballs-cli.py set-name <your first name>	-save your name to rocketballs-cli configuration file
 python rocketballs-cli.py hit	-Add a hit entry to your data file with your name and the current date 
+python rocketballs-cli.py count	-List the total number of hits for each participant

@@ -2,6 +2,7 @@
 
 import sys
 import datetime
+import os
 
 PLAYERS_PATH = '../players/' #Path to players directory
 
@@ -32,7 +33,26 @@ def hit():
 	else:
 		print("You have to set your name before registering a hit")
 
+#Returns a list of the players names
+def get_players():
+	to_return = []
+	for root, dirs, files in os.walk(PLAYERS_PATH):  
+		for filename in files:
+			to_return.append(str(filename))
+	return to_return
 
+#Returns a list of each line of a player's data file
+def get_player_data(player_name):
+	with open(PLAYERS_PATH + player_name, 'r') as file:
+		player_data = file.read()
+		return player_data.split("\n")
+			
+	return []
+
+#Print each player and their hit count
+def print_counts():
+	for player_name in get_players():
+		print(player_name + ": " + str(len(get_player_data(player_name))))
 
 
 
@@ -58,6 +78,8 @@ else:
 			set_name(cli_arguments[2])
 		else:
 			print('No name given\nCorrect set-name usage: python rocketballs-cli.py set-name <your first name>')
+	elif command_argument == "count":
+		print_counts()
 	else:
 		#No command given, print short help message
 		default_message()
